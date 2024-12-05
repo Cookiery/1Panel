@@ -26,7 +26,7 @@ type PostgresqlClient interface {
 	Close()
 }
 
-func NewPostgresqlClient(conn client.DBInfo) (PostgresqlClient, error) {	
+func NewPostgresqlClient(conn client.DBInfo) (PostgresqlClient, error) {
 	if conn.From == "local" {
 		connArgs := []string{"exec", conn.Address, "psql", "-t", "-U", conn.Username, "-c"}
 		return client.NewLocal(connArgs, conn.Address, conn.Username, conn.Password, conn.Database), nil
